@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>access to json file</title>
+</head>
+<body>
+    <script>
+        fetch("json/student.json").then((response)=>{
+            return response.json();
+        }).then((result)=>{
+            console.log(result);
+            for(let x in result){
+                document.write(result[x].name+"<br>")
+            }
+        }).catch((error)=>{
+            document.write("data are not found");
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch method for accessing the data</title>
+</head>
+<body>
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/users").then((response)=>{
+            return response.json()
+        }).then((result)=>{
+            console.log(result);
+            for(let x in result){
+                // var a='${result[x].name}'
+                document.write(result[x].name+"-"+result[x].address.city+"<br>");
+            }
+        }).catch((error)=>{
+            // console.log("file are not found")
+            document.write("file are not found!!!")
+
+        })
+    </script>
+</body>
+</html>

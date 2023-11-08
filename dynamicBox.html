@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic box with cursor</title>
+    <style>
+       body {
+            margin: 0;
+            background-color: aqua;
+            position: relative;
+        }
+        #box{
+            width:70px;
+            height: 70px;
+            background-color: yellow;
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+        <div id="box">
+
+        </div>
+    
+    <script>
+        const box=document.getElementById('box');
+        function setBoxSize(){
+            const viewportWidth=window.innerWidth*0.8;
+            const viewportHeight=window.innerHeight*0.8;
+            box.style.width='${viewportWidth}px';
+            box.style.height='${viewportHeight}px';
+        }
+        function moveBoxRandomly(){
+            const viewportWidth=window.innerWidth-box.offsetWidth;
+            const viewportHeight=window.innerHeight-box.offsetHeight;
+            const randomX=Math.floor(Math.random()*viewportWidth);
+            const randomY=Math.floor(Math.random()*viewportHeight);
+            box.style.left = `${randomX}px`;
+            box.style.top = `${randomY}px`;
+        }
+        window.addEventListener('resize',setBoxSize);
+        box.addEventListener('mouseover',moveBoxRandomly);
+        setBoxSize();
+        moveBoxRandomly();
+    </script>
+</body>
+</html>

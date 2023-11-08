@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move ball</title>
+    <style>
+        #viewport {
+            width: 400px;
+            height: 400px;
+            border: 1px solid blueviolet;
+            position: relative;
+            /* display: flex;
+            justify-content: center; */
+        }
+
+        #ball {
+            width: 50px;
+            height: 50px;
+            background-color: cyan;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="viewport">
+        <div id="ball"></div>
+    </div>
+    <script>
+        const ball = document.getElementById('ball');
+        let ballX = 175;
+        let ballY = 175;
+        let direction = 'right';
+
+        function moveBall() {
+            const step = 2;
+            switch (direction) {
+                case 'right':
+                    ballX += step;
+                    break;
+                case 'down':
+                    ballY += step;
+                    break;
+                case 'left':
+                    ballX -= step;
+                    break;
+                case 'up':
+                    ballY -= step;
+                    break;
+            }
+
+            // Wrap the ball around the viewport
+            if (ballX > 350) {
+                ballX = 0;
+                direction = 'down';
+            } else if (ballY > 350) {
+                ballY = 350;
+                direction = 'left';
+            } else if (ballX < 0) {
+                ballX = 350;
+                direction = 'up';
+            } else if (ballY < 0) {
+                ballY = 0;
+                direction = 'right';
+            }
+
+            ball.style.left = ballX + 'px';
+            ball.style.top = ballY + 'px';
+
+            requestAnimationFrame(moveBall);
+        }
+
+        requestAnimationFrame(moveBall);
+    </script>
+</body>
+
+</html>
